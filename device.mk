@@ -15,7 +15,7 @@
 #
 
 $(call inherit-product, vendor/xiaomi/tissot/tissot-vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -29,7 +29,8 @@ AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
-    system
+    system \
+    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -88,16 +89,33 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.xiaomi_8953
 
-# Update engine
-PRODUCT_PACKAGES += \
-    brillo_update_payload \
-    update_engine \
-    update_engine_sideload \
-    update_verifier
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
 # Verity
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/system
-$(call inherit-product, build/target/product/verity.mk)
+#PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/system
+#$(call inherit-product, build/target/product/verity.mk)
+
+# VNDK
+#PRODUCT_PACKAGES += \
+#    vndk_package \
+#    libstdc++.vendor
+
+# Halium required bits:
+# Missing dependencies needed in Halium
+PRODUCT_PACKAGES += \
+    libandroid \
+    libandroid_runtime \
+    libnetutils \
+    libril \
+    libprotobuf-cpp-full \
+    minisfservice \
+    libyuv \
+    libexif \
+    libsoftkeymasterdevice \
+    libpuresoftkeymasterdevice \
+    libdrm \
+    libion \
+    vibrator.default \
+    vendor.display.config@1.7 \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service \
+    android.hardware.radio.deprecated@1.0-impl \
+    android.hardware.radio.deprecated@1.0-service 
