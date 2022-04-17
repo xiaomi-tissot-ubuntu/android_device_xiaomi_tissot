@@ -45,7 +45,7 @@ VENDOR_SECURITY_PATCH := 2019-05-05
 
 # Sepolicy
 # MAYBE COMMENT BELOW
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Inherit from the proprietary version
 -include vendor/xiaomi/tissot/BoardConfigVendor.mk
